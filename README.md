@@ -1,5 +1,5 @@
-# Advent-of-Code
-Advent of Code python solutions
+# [Advent of Code](https://adventofcode.com/) ![PyPI](https://img.shields.io/pypi/pyversions/Django.svg?style=plastic)
+Advent of Code solutions in python
 
 ```bash
 ~$ ./benchmark --year 2019
