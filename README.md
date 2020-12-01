@@ -1,6 +1,15 @@
 # [Advent of Code](https://adventofcode.com/) [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg?style=plastic)](https://github.com/filipmlynarski/Advent-of-Code)
 Advent of Code solutions in python
 
+
+```bash
+~$ ./benchmark --year 2020
+Benchmarking year 2020 [interpreter: python] [CPU: x86_64]
+```
+| day | part one | part two |total time|
+|:---:|---------:|---------:|---------:|
+|  1  |    0.198s|    0.058s|          |
+|     |          |          |    0.256s|
 ```bash
 ~$ ./benchmark --year 2019
 Benchmarking year 2019 [interpreter: python] [CPU: x86_64]
