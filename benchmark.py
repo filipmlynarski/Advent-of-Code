@@ -10,7 +10,7 @@ __author__ = 'Filip Młynarski'
 
 parser = argparse.ArgumentParser(
     description='This scripts benchmarks advent of code solutions')
-parser.add_argument('-y', '--year', help='Year to benchmark', default=2019)
+parser.add_argument('-y', '--year', help='Year to benchmark', default=2020)
 parser.add_argument(
     '-i', '--interpreter', help='Interpreter to use', default='python')
 args = parser.parse_args()
