@@ -2,17 +2,20 @@
 Advent of Code solutions in python
 
 2020
--
+===
+[YouTube playlist](https://www.youtube.com/playlist?list=PLFF0-5ncIM6ycAECluTyq6SIDbgC4g5eu) of me live solving
+
 ```bash
 ~$ ./benchmark --year 2020
 Benchmarking year 2020 [interpreter: python] [CPU: x86_64]
 ```
-| day | part one | part two |total time|   stats   |
-|:---:|---------:|---------:|---------:|:---------:|
-|  1  |    0.182s|    0.056s|          | #567/#255 |
-|  2  |    0.188s|    0.028s|          | #226/#209 |
-|     |          |          |    0.455s|           |
+|   day  | part one | part two |total time|   stats   |
+|:------:|---------:|---------:|---------:|:---------:|
+|   1    |    0.182s|    0.056s|          | #567/#255 |
+| [2][2] |    0.188s|    0.028s|          | #226/#209 |
+|        |          |          |    0.455s|           |
 
+[2]: https://youtu.be/kEH0Vb9BFRU
 2019
 -
 ```bash
