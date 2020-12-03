@@ -46,9 +46,9 @@ formatting = {
 }
 stats = dict()
 if os.path.isfile('stats.txt'):
-    formatting.update({'stats': {'width': 11}})
+    formatting.update({'place': {'width': 11}})
     stats = {
-        day: f'#{part_1}/#{part_2}'
+        day: f'{part_1}/{part_2}'
         for day, part_1, part_2 in map(str.split, open('stats.txt').readlines())
     }
 
