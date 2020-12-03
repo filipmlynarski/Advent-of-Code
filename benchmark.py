@@ -39,7 +39,7 @@ os.chdir(str(args.year))
 files = filter(match, os.listdir('.'))
 
 formatting = {
-    'day': {'width': 5},
+    'day': {'width': 8},
     'part one': {'width': 10, 'round': 3},
     'part two': {'width': 10, 'round': 3},
     'total time': {'width': 10, 'round': 3},
