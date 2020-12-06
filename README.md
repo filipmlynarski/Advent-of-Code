@@ -11,17 +11,19 @@ Benchmarking year 2020 [interpreter: python] [CPU: x86_64]
 ```
 |   day  | part one | part two |total time|   place   |
 |:------:|---------:|---------:|---------:|:---------:|
-|   1    |    0.182s|    0.056s|          |  567/255  |
+|   1    |    0.182s|    0.056s|          |           |
 | [2][2] |    0.188s|    0.028s|          |  226/209  |
 | [3][3] |    0.174s|    0.018s|          |  261/236  |
-|   4    |    0.169s|    0.017s|          |  482/413  |
-|   5    |    0.168s|    0.017s|          | 2128/2463 |
-|        |          |          |    0.980s|           |
+| [4][4] |    0.203s|    0.019s|          |  482/413  |
+|   5    |    0.193s|    0.021s|          | 2128/2463 |
+|   6    |    0.201s|    0.021s|          |  870/705  |
+|        |          |          |    1.393s|           |
 
 [2]: https://youtu.be/kEH0Vb9BFRU
 [3]: https://youtu.be/egcCF6YUyW4
+[4]: https://youtu.be/5GBK3uDNy4Y
 2019
--
+===
 ```bash
 ~$ ./benchmark --year 2019
 Benchmarking year 2019 [interpreter: python] [CPU: x86_64]
