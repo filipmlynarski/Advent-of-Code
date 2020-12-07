@@ -9,19 +9,22 @@ Advent of Code solutions in python
 ~$ ./benchmark --year 2020
 Benchmarking year 2020 [interpreter: python] [CPU: x86_64]
 ```
-|   day  | part one | part two |total time|   place   |
+|  day   | part one | part two |total time|   place   |
 |:------:|---------:|---------:|---------:|:---------:|
-|   1    |    0.182s|    0.056s|          |           |
-| [2][2] |    0.188s|    0.028s|          |  226/209  |
-| [3][3] |    0.174s|    0.018s|          |  261/236  |
-| [4][4] |    0.203s|    0.019s|          |  482/413  |
-|   5    |    0.193s|    0.021s|          | 2128/2463 |
-|   6    |    0.201s|    0.021s|          |  870/705  |
-|        |          |          |    1.393s|           |
+|   1    |    0.054s|    0.002s|          |  567/255  |
+| [2][2] |    0.019s|    0.002s|          |  226/209  |
+| [3][3] |    0.018s|    0.002s|          |  261/236  |
+| [4][4] |    0.022s|    0.003s|          |  482/413  |
+| [5][5] |    0.020s|    0.002s|          | 2128/2463 |
+| [6][6] |    0.020s|    0.002s|          |  870/705  |
+|   7    |    0.073s|    0.003s|          |  227/431  |
+|        |          |          |    0.243s|           |
 
 [2]: https://youtu.be/kEH0Vb9BFRU
 [3]: https://youtu.be/egcCF6YUyW4
 [4]: https://youtu.be/5GBK3uDNy4Y
+[5]: https://youtu.be/Q_NCQieBkeI
+[6]: https://youtu.be/K9SNqWgl9UM
 2019
 ===
 ```bash
