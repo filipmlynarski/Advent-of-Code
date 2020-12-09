@@ -18,8 +18,9 @@ Benchmarking year 2020 [interpreter: python] [CPU: x86_64]
 | [5][5] |    0.020s|    0.002s|          | 2128/2463 |
 | [6][6] |    0.020s|    0.002s|          |  870/705  |
 | [7][7] |    0.073s|    0.003s|          |  227/431  |
-|   8    |    0.027s|    0.002s|          |  207/285  |
-|        |          |          |    0.239s|           |
+| [8][8] |    0.027s|    0.002s|          |  207/285  |
+|   9    |    0.048s|    0.002s|          | 1996/930  |
+|        |          |          |    0.333s|           |
 
 [2]: https://youtu.be/kEH0Vb9BFRU
 [3]: https://youtu.be/egcCF6YUyW4
@@ -27,6 +28,7 @@ Benchmarking year 2020 [interpreter: python] [CPU: x86_64]
 [5]: https://youtu.be/Q_NCQieBkeI
 [6]: https://youtu.be/K9SNqWgl9UM
 [7]: https://youtu.be/ubkqflCI3R4
+[8]: https://youtu.be/m9EyaiVlwMY
 2019
 ===
 ```bash
