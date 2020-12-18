@@ -27,7 +27,9 @@ Benchmarking year 2020 [interpreter: python] [CPU: x86_64]
 |[14][14]|    0.123s|    0.003s|          |  201/665  |
 |   15   |    8.993s|    0.003s|          |  708/1067 |
 |   16   |    0.044s|    0.003s|          |  612/10k  |
-|        |          |          |   12.501s|           |
+|   17   |    4.253s|    0.245s|          |  435/371  |
+|   18   |    0.038s|    0.003s|          | 2261/3253 |
+|        |          |          |   18.199s|           |
 
 [2]: https://youtu.be/kEH0Vb9BFRU
 [3]: https://youtu.be/egcCF6YUyW4
