@@ -1,3 +1,6 @@
+# import re
+
+
 def parse(line):
     mapping = {'(': '[', ')': ']', ' ': ',', '*': '"*"', '+': '"+"'}
     return eval(line.translate(str.maketrans(mapping)))
@@ -28,6 +31,31 @@ def evaluate(equation, part):
     return ans
 
 
-lines = list(map(parse, open('puzzle/18.in').read().splitlines()))
-print(sum(evaluate(line, 1) for line in lines))
-print(sum(evaluate(line, 2) for line in lines))
+lines = open('puzzle/18.in').read().splitlines()
+parsed_lines = list(map(parse, lines))
+print(sum(evaluate(line, 1) for line in parsed_lines))
+print(sum(evaluate(line, 2) for line in parsed_lines))
+
+
+# class ReversedInt:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def __add__(self, other):
+#         return ReversedInt(self.value + other.value)
+#
+#     def __radd__(self, other):
+#         return ReversedInt(self.value + other).value
+#
+#     def __sub__(self, other):
+#         return ReversedInt(self.value * other.value)
+#
+#     def __truediv__(self, other):
+#         return ReversedInt(self.value + other.value)
+#
+#
+# lines = [re.sub(r'(\d+)', r'ReversedInt(\1)', line.replace('*', '-'))
+#          for line in lines]
+# print(sum(map(eval, lines)))
+# lines = [line.replace('+', '/') for line in lines]
+# print(sum(map(eval, lines)))
