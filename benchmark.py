@@ -78,9 +78,12 @@ for file_name in sorted(files):
     process = subprocess.Popen([interpreter, file_name], stdout=subprocess.PIPE)
     process.stdout.readline()
     part_1_time = default_timer() - start
-    process.stdout.read()
-    part_2_time = default_timer() - start - part_1_time
-    total_time += part_1_time + part_2_time
+    total_time += part_1_time
+    part_2_time = ''
+    if day != '25':
+        process.stdout.read()
+        part_2_time = default_timer() - start - part_1_time
+        total_time += part_2_time
 
     row = [day.lstrip('0'), part_1_time, part_2_time, '', stats.get(day, '')]
     print(format_row(row))
