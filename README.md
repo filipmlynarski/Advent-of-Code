@@ -9,6 +9,9 @@ Benchmarking year 2021 [interpreter: python] [CPU: x86_64]
 ```
 |  day   | part one | part two |total time|   place   |
 |:------:|---------:|---------:|---------:|:---------:|
+|   1    |    0.028s|    0.004s|          |  533/476  |
+|   2    |    0.027s|    0.004s|          |  165/1187 |
+|        |          |          |    0.063s|           |
 
 2020
 ===
