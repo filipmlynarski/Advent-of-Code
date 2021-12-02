@@ -698,6 +698,14 @@ def print_grid(grid):
     for line in grid:
         print(*line, sep="")
 
+def print_grid_dict(grid, fill='.'):
+    min_y, max_y = min_max(lmap(fst, grid))
+    min_x, max_x = min_max(lmap(snd, grid))
+    for y in range(min_y, max_y + 1):
+        for x in range(min_x, max_x + 1):
+            print(grid.get((y, x), fill), end='')
+        print()
+
 
 def fst(x):
     return x[0]
