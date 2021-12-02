@@ -111,8 +111,6 @@ def invert_dict(d, single=True):
     if single:
         for k, v in d.items():
             v = make_hashable(v)
-            if v in out:
-                print("[invert_dict] WARNING WARNING: duplicate key", v)
             out[v] = k
     else:
         for k, v in d.items():
