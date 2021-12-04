@@ -191,3 +191,11 @@ def pdist2sq(x, y=None):
     return sum(i*i for i in x)
 def pdist2(v):
     return math.sqrt(pdist2sq(v))
+
+def decor(f):
+    import time
+    def inner(*args, **kwargs):
+        return f(time.time(), *args, **kwargs)
+    return inner
+time_print = decor(print)
+

@@ -17,5 +17,5 @@ for line in puzzle:
         depth_1 -= value
         aim -= value
 
-print(horizontal * depth_1)
-print(horizontal * depth_2)
+time_print(horizontal * depth_1)
+time_print(horizontal * depth_2)

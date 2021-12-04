@@ -12,5 +12,5 @@ for idx in range(len(all_ints) - 1):
     if idx < len(all_ints) - 2:
         part_2 += sum(all_ints[idx:idx+3]) < sum(all_ints[idx+1:idx+4])
 
-print(part_1)
-print(part_2)
+time_print(part_1)
+time_print(part_2)

@@ -11,7 +11,7 @@ for line in lines:
         common[idx][int(char)] += 1
 gamma = int(''.join('0' if val[0] > val[1] else '1' for val in common), 2)
 eps = int(''.join('1' if val[0] > val[1] else '0' for val in common), 2)
-print(gamma * eps)
+time_print(gamma * eps)
 
 oxygen_candidates = lines.copy()
 co2_candidates = lines.copy()
@@ -31,4 +31,4 @@ for idx in range(width):
 
 oxygen = int(oxygen_candidates[0], 2)
 co2 = int(co2_candidates[0], 2)
-print(oxygen * co2)
+time_print(oxygen * co2)

@@ -4,6 +4,7 @@ import os
 import re
 import subprocess
 import platform
+from time import time
 from timeit import default_timer
 
 __author__ = 'Filip Młynarski'
@@ -73,16 +74,16 @@ total_time = 0
 interpreter = args.interpreter
 for file_name in sorted(files):
     day, _ = file_name.split('.', 1)
-    start = default_timer()
+    start = time()
 
     process = subprocess.Popen([interpreter, file_name], stdout=subprocess.PIPE)
-    process.stdout.readline()
-    part_1_time = default_timer() - start
+    time_1, *_ = process.stdout.readline().split()
+    part_1_time = float(time_1) - start
     total_time += part_1_time
     part_2_time = ''
     if day != '25':
-        process.stdout.read()
-        part_2_time = default_timer() - start - part_1_time
+        time_2, *_ = process.stdout.readline().split()
+        part_2_time = float(time_2) - start - part_1_time
         total_time += part_2_time
 
     row = [day.lstrip('0'), part_1_time, part_2_time, '', stats.get(day, '')]

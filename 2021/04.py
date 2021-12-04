@@ -35,7 +35,7 @@ for number in numbers:
                             values += board[cord]
                         won_boards.add(board_idx)
                         if len(won_boards) == 1:
-                            print(number * values)
+                            time_print(number * values)
                         elif len(won_boards) == len(boards):
-                            print(number * values)
+                            time_print(number * values)
                         break
