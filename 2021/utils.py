@@ -198,4 +198,3 @@ def decor(f):
         return f(time.time(), *args, **kwargs)
     return inner
 time_print = decor(print)
-

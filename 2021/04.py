@@ -3,8 +3,7 @@ sys.dont_write_bytecode = True
 from utils import *
 
 puzzle = open('puzzle/04.in').read()
-numbers = ints(puzzle.splitlines()[0])
-raw_boards = puzzle.split('\n\n')[1:]
+raw_numbers, *raw_boards = puzzle.split('\n\n')
 width = len(raw_boards[0].splitlines())
 
 boards = []
@@ -21,7 +20,7 @@ for idx in range(width):
 
 board_matches = [set() for _ in boards]
 won_boards = set()
-for number in numbers:
+for number in ints(raw_numbers):
     for board_idx, board in enumerate(boards):
         if board_idx in won_boards:
             continue
