@@ -1,5 +1,6 @@
-import re
-from collections import Counter, defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 raw_lines = open('puzzle/21.in').read()
 allergen_to_foods = defaultdict(list)
@@ -23,5 +24,5 @@ while True:
     else:
         break
 
-print(sum(map(foods_counted.get, foods_counted - food_to_allergen.keys())))
-print(','.join(sorted(food_to_allergen, key=food_to_allergen.get)))
+time_print(sum(map(foods_counted.get, foods_counted - food_to_allergen.keys())))
+time_print(','.join(sorted(food_to_allergen, key=food_to_allergen.get)))

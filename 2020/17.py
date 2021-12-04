@@ -1,13 +1,12 @@
 import sys
-from collections import defaultdict
-from functools import lru_cache
-from itertools import product
+sys.dont_write_bytecode = True
+from utils import *
 
 sys.setrecursionlimit(5000)
 
 
 def create_deltas(dims):
-    return list(filter(any, product(range(-1, 2), repeat=dims)))
+    return list(filter(any, itertools.product(range(-1, 2), repeat=dims)))
 
 
 puzzle = open('puzzle/17.in').read().splitlines()
@@ -20,7 +19,7 @@ for y, line in enumerate(puzzle):
 deltas = {3: create_deltas(3), 4: create_deltas(4)}
 
 
-@lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def get_neighbours(cord):
     ret = set()
     for cord_deltas in deltas[len(cord)]:
@@ -53,5 +52,5 @@ def step(grid, cycles):
     return grid
 
 
-print(sum(step(grid_3d, 6).values()))
-print(sum(step(grid_4d, 6).values()))
+time_print(sum(step(grid_3d, 6).values()))
+time_print(sum(step(grid_4d, 6).values()))

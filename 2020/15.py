@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 def speak(length):
     spoken = {num: idx for idx, num in enumerate(puzzle[:-1])}
     said = puzzle[-1]
@@ -9,5 +13,5 @@ def speak(length):
 
 
 puzzle = list(map(int, open('puzzle/15.in').read().split(',')))
-print(speak(2020))
-print(speak(30000000))
+time_print(speak(2020))
+time_print(speak(30000000))

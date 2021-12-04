@@ -1,4 +1,6 @@
-import re
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 
 def create_rule(parsed_line):
@@ -32,7 +34,7 @@ for ticket in nearby_tickets:
         total_invalid += invalid_value
     else:
         valid_tickets.append(ticket)
-print(total_invalid)
+time_print(total_invalid)
 
 
 def get_matching_columns(rule):
@@ -50,4 +52,4 @@ for name, cols in sorted(all_matching_columns.items(), key=lambda x: len(x[1])):
     if name.startswith('departure'):
         ans *= my_ticket[next(iter(cols - seen))]
     seen.update(cols)
-print(ans)
+time_print(ans)

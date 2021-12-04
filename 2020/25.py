@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 card_pub, door_pub = list(map(int, open('puzzle/25.in').read().splitlines()))
 modulus = 20201227
 subject = loop_size = 1
@@ -9,4 +13,4 @@ while not (card_loop or door_loop):
     if subject == door_pub:
         door_loop = loop_size
     loop_size += 1
-print(pow(card_pub if door_loop else door_pub, door_loop or card_loop, modulus))
+time_print(pow(card_pub if door_loop else door_pub, door_loop or card_loop, modulus))

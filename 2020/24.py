@@ -1,5 +1,6 @@
-import re
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 directions = {'e': (2, 0), 'se': (1, -1), 'sw': (-1, -1),
               'w': (-2, 0), 'nw': (-1, 1), 'ne': (1, 1)}
@@ -13,7 +14,7 @@ for line in lines:
         x += x_delta
         y += y_delta
     grid[(x, y)] = 0 if grid[(x, y)] == 1 else 1
-print(len(grid) - sum(grid.values()))
+time_print(len(grid) - sum(grid.values()))
 
 for _ in range(100):
     min_x, *_, max_x = sorted(x for x, _ in grid)
@@ -29,4 +30,4 @@ for _ in range(100):
             elif grid[(x, y)] == 1 and adj[0] == 2:
                 grid_[(x, y)] = 0
     grid = grid_
-print(len(grid) - sum(grid.values()))
+time_print(len(grid) - sum(grid.values()))

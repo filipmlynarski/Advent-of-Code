@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 from copy import deepcopy
 from functools import lru_cache
 
@@ -58,5 +62,5 @@ def get_adjacent_2(grid, row, col):
     return adj
 
 
-print(get_seats(get_adjacent_1, 4))
-print(get_seats(get_adjacent_2, 5))
+time_print(get_seats(get_adjacent_1, 4))
+time_print(get_seats(get_adjacent_2, 5))

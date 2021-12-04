@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 def play(cups, rounds):
     linked_cups = dict(zip(cups, cups[1:] + [cups[0]]))
     current_cup = cups[0]
@@ -20,7 +24,7 @@ game_1_cups = play(puzzle, 100)
 ans = [game_1_cups[1]]
 for _ in range(7):
     ans.append(game_1_cups[ans[-1]])
-print(''.join(map(str, ans)))
+time_print(''.join(map(str, ans)))
 
 game_2 = play(puzzle + list(range(10, 1_000_001)), 10_000_000)
-print(game_2[1] * game_2[game_2[1]])
+time_print(game_2[1] * game_2[game_2[1]])

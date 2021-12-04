@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 from collections import deque
 
 puzzle = open('puzzle/12.in').read()
@@ -15,7 +19,7 @@ for action, value in lines:
         x += directions[action][1] * value
     elif action in {'L', 'R'}:
         current_dir.rotate({'L': 1, 'R': -1}[action] * (value // 90))
-print(abs(y) + abs(x))
+time_print(abs(y) + abs(x))
 
 y, x = 0, 0
 y_way, x_way = 1, 10
@@ -29,4 +33,4 @@ for action, value in lines:
     else:
         for _ in range(0, value, 90):
             y_way, x_way = (x_way, -y_way) if action == 'L' else (-x_way, y_way)
-print(abs(y) + abs(x))
+time_print(abs(y) + abs(x))

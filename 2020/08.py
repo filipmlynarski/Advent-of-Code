@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 def run(instructions):
     seen = set()
     pointer = 0
@@ -19,7 +23,7 @@ def run(instructions):
 
 
 puzzle = open('puzzle/08.in').read().splitlines()
-print(run(puzzle)[0])
+time_print(run(puzzle)[0])
 
 for line_idx, line in enumerate(puzzle):
     if line.startswith('acc'):
@@ -29,5 +33,5 @@ for line_idx, line in enumerate(puzzle):
     puzzle_[line_idx] = {'jmp': 'nop', 'nop': 'jmp'}[opcode] + ' ' + arg
     _, finished = run(puzzle_)
     if finished:
-        print(finished)
+        time_print(finished)
         break

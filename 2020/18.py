@@ -1,4 +1,6 @@
-# import re
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 
 def parse(line):
@@ -33,8 +35,8 @@ def evaluate(equation, part):
 
 lines = open('puzzle/18.in').read().splitlines()
 parsed_lines = list(map(parse, lines))
-print(sum(evaluate(line, 1) for line in parsed_lines))
-print(sum(evaluate(line, 2) for line in parsed_lines))
+time_print(sum(evaluate(line, 1) for line in parsed_lines))
+time_print(sum(evaluate(line, 2) for line in parsed_lines))
 
 
 # class ReversedInt:

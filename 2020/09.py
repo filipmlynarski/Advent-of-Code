@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 from itertools import combinations
 
 puzzle = list(map(int, open('puzzle/09.in').read().splitlines()))
@@ -7,7 +11,7 @@ for idx in range(25, len(puzzle)):
                for num_1, num_2 in combinations(puzzle[idx-25: idx], 2)):
         part_1 = puzzle[idx]
         break
-print(part_1)
+time_print(part_1)
 
 for end_idx in range(2, len(puzzle)):
     for start_idx in range(end_idx-2):
@@ -19,4 +23,4 @@ for end_idx in range(2, len(puzzle)):
             part_2 = min(puzzle_slice) + max(puzzle_slice)
     if part_2:
         break
-print(part_2)
+time_print(part_2)

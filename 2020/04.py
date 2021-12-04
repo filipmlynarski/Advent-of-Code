@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 def validate(pair):
     key, value = pair
     if key == 'byr':
@@ -34,5 +38,5 @@ for line in open('puzzle/04.in').read().splitlines() + ['']:
                 part_2 += 1
         passport = dict()
 
-print(part_1)
-print(part_2)
+time_print(part_1)
+time_print(part_2)

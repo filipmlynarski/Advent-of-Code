@@ -1,4 +1,6 @@
-import re
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 
 def get_ints(line_):
@@ -36,5 +38,5 @@ for line in lines:
     for address_ in addresses:
         part_2[int(''.join(address_), 2)] = value
 
-print(sum(part_1.values()))
-print(sum(part_2.values()))
+time_print(sum(part_1.values()))
+time_print(sum(part_2.values()))

@@ -1,4 +1,6 @@
-from functools import lru_cache
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 raw_rules, lines = open('puzzle/19.in').read().split('\n\n')
 rules_map = {}
@@ -9,7 +11,7 @@ for name, options in (line.split(': ') for line in raw_rules.splitlines()):
         rules_map[name] = tuple(tuple(i.split()) for i in options.split(' | '))
 
 
-@lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def match_rule(message, rules_options, part=1):
     if type(rules_options) is tuple:  # nested rules
         ret = []
@@ -53,5 +55,5 @@ def match_rule(message, rules_options, part=1):
 
 
 start = rules_map['0']
-print(sum('' in match_rule(raw, start, 1) for raw in lines.splitlines()))
-print(sum('' in match_rule(raw, start, 2) for raw in lines.splitlines()))
+time_print(sum('' in match_rule(raw, start, 1) for raw in lines.splitlines()))
+time_print(sum('' in match_rule(raw, start, 2) for raw in lines.splitlines()))

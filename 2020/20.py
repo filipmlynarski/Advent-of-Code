@@ -1,5 +1,6 @@
-from functools import lru_cache
-from itertools import product
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 
 class Tile:
@@ -90,7 +91,7 @@ class Tile:
         return hash((self.id, self.rotated, self.flipped))
 
 
-@lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def match(tile_1, tile_2, border):
     if border == 'U':
         lines = zip(tile_1.get_line(row=0), tile_2.get_line(row=-1))
@@ -105,7 +106,7 @@ def match(tile_1, tile_2, border):
     return all(char_1 == char_2 for char_1, char_2 in lines)
 
 
-@lru_cache(maxsize=None)
+@functools.lru_cache(maxsize=None)
 def get_possible_tiles(this_tile, side):
     matching_tiles = set()
     for other_tile in Tile.all_tiles.values():
@@ -142,7 +143,7 @@ raw_tiles = open('puzzle/20.in').read().split('\n\n')
 total_width = int(len(raw_tiles) ** .5)
 for tile_lines in map(str.splitlines, raw_tiles):
     name = int(tile_lines[0].split()[-1][:-1])
-    for rotation, flip in product(range(4), [None, 'V']):
+    for rotation, flip in itertools.product(range(4), [None, 'V']):
         Tile(name, tile_lines[1:], rotation, flip)
 
 picture = []
@@ -155,7 +156,7 @@ for tile in Tile.all_tiles.values():
                 full_image[-total_width].id *
                 full_image[-1].id
         )
-        print(ans)
+        time_print(ans)
         for tiles_row in range(total_width):  # show image
             start_idx = tiles_row * total_width
             end_idx = start_idx + total_width
@@ -171,10 +172,10 @@ for tile in Tile.all_tiles.values():
 
 def apply_pattern(pattern, image):
     total = 0
-    for row, col in product(range(len(image) - len(pattern)),
-                            range(len(image[0]) - len(pattern[0]))):
-        for sub_row, sub_col in product(range(len(pattern)),
-                                        range(len(pattern[0]))):
+    for row, col in itertools.product(range(len(image) - len(pattern)),
+                                      range(len(image[0]) - len(pattern[0]))):
+        for sub_row, sub_col in itertools.product(range(len(pattern)),
+                                                  range(len(pattern[0]))):
             if pattern[sub_row][sub_col] != '#':
                 continue
             if image[row+sub_row][col+sub_col] != '#':
@@ -192,12 +193,12 @@ dragon_pattern = list(map(list, """\
  #  #  #  #  #  #   """.splitlines()))
 pic_hash = sum(line.count('#') for line in picture)
 drake_hash = sum(line.count('#') for line in dragon_pattern)
-for rotation, flip in product(range(4), [None, 'V']):
+for rotation, flip in itertools.product(range(4), [None, 'V']):
     tile_picture = Tile(0, picture, rotation, flip)
     n_dragons = apply_pattern(
         dragon_pattern,
         [tile_picture.get_line(row=row) for row in range(len(picture))],
     )
     if n_dragons:
-        print(pic_hash - drake_hash * n_dragons)
+        time_print(pic_hash - drake_hash * n_dragons)
         break

@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 bags = dict()
 for line in open('puzzle/07.in').read().splitlines():
     left_bag, right_bags = line.split(' contain ')
@@ -19,5 +23,5 @@ def part_2(bag_color: tuple) -> int:
 
 
 target = 'shiny', 'gold'
-print(sum(map(part_1, bags)))
-print(part_2(target) - 1)
+time_print(sum(map(part_1, bags)))
+time_print(part_2(target) - 1)

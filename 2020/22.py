@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 def play(deck_1, deck_2, part):
     history = set()
     while deck_1 and deck_2:
@@ -27,6 +31,6 @@ p1 = list(map(int, p1.splitlines()[1:]))
 p2 = list(map(int, p2.splitlines()[1:]))
 
 p1_after, p2_after = play(p1.copy(), p2.copy(), 1)
-print(sum(i * j for i, j in enumerate(reversed(p1_after or p2_after), 1)))
+time_print(sum(i * j for i, j in enumerate(reversed(p1_after or p2_after), 1)))
 p1_after, p2_after = play(p1.copy(), p2.copy(), 2)
-print(sum(i * j for i, j in enumerate(reversed(p1_after or p2_after), 1)))
+time_print(sum(i * j for i, j in enumerate(reversed(p1_after or p2_after), 1)))
