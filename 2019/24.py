@@ -1,6 +1,6 @@
-from collections import defaultdict
-from functools import lru_cache
-from itertools import product
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = open('puzzle/24.in').read()
 grid = tuple(tuple(line) for line in puzzle.splitlines())
@@ -34,7 +34,7 @@ while True:
     new_hash = hash(new_grid)
     if new_hash in seen:
         flat = [value for line in new_grid for value in line]
-        print(sum(2 ** idx for idx, value in enumerate(flat) if value == '#'))
+        time_print(sum(2 ** idx for idx, value in enumerate(flat) if value == '#'))
         break
     seen.add(new_hash)
     grid = new_grid
@@ -82,7 +82,7 @@ for _ in range(200):
         (max(grid)+1, defaultdict(lambda: defaultdict(lambda: '.'))),
     ]
     for level, temp_grid in [*grid.items(), *extra]:
-        for row, col in product(range(-2, 3), repeat=2):
+        for row, col in itertools.product(range(-2, 3), repeat=2):
             if (row, col) == (0, 0):
                 continue
             alive = get_alive(grid, level, row, col)
@@ -92,4 +92,4 @@ for _ in range(200):
                 new_grid[level][(row, col)] = '#' if alive == 1 else '.'
     grid = new_grid.copy()
 
-print(sum(value == '#' for sub_grid in grid.values() for value in sub_grid.values()))
+time_print(sum(value == '#' for sub_grid in grid.values() for value in sub_grid.values()))

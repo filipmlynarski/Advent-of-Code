@@ -1,3 +1,8 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
+
 def shuffle_p1(n_cards, card_id):
     cards = list(range(n_cards))
     for line in lines:
@@ -57,5 +62,5 @@ def shuffle_p2(n_cards, n_shuffles, card_id):  # mcpower answer
 
 
 lines = open('puzzle/22.in').read().splitlines()
-print(shuffle_p1(10007, 2019))
-print(shuffle_p2(119315717514047, 101741582076661, 2020))
+time_print(shuffle_p1(10007, 2019))
+time_print(shuffle_p2(119315717514047, 101741582076661, 2020))

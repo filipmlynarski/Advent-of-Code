@@ -1,6 +1,7 @@
-import re
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 import typing as t
-from collections import defaultdict
 from math import ceil
 
 reaction_map: t.Dict[str, t.Tuple[int, list]] = dict()
@@ -31,7 +32,7 @@ def produce(name: str, amount: int) -> t.Generator[int, None, None]:
 
 
 total = defaultdict(int)
-print(sum(produce('FUEL', 1)))
+time_print(sum(produce('FUEL', 1)))
 
 low = 0
 high = total_ore = int(1e12)
@@ -42,4 +43,4 @@ while low < high:
         low = mid
     else:
         high = mid - 1
-print(low)
+time_print(low)

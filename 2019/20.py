@@ -1,6 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 import typing as t
-from collections import defaultdict
-from functools import lru_cache
 
 Cord = t.Tuple[int, int]
 
@@ -101,7 +102,7 @@ def get_paths_to_portals(cord: Cord) -> t.List[t.Tuple[Cord, int, int]]:
 def escape(paths: t.List, ans: t.Optional[int] = None, part: int = 1) -> int:
     """
     Given current pathways made of portals recursively explore maze to find
-    shortest possible route to the end portal.
+    the shortest possible route to the end portal.
     """
     new_paths = []
     for cord, level, total_length in paths:
@@ -120,5 +121,5 @@ def escape(paths: t.List, ans: t.Optional[int] = None, part: int = 1) -> int:
     return escape(new_paths, ans, part) if new_paths else ans
 
 
-print(escape([(start, 0, 0)], part=1))
-print(escape([(start, 0, 0)], part=2))
+time_print(escape([(start, 0, 0)], part=1))
+time_print(escape([(start, 0, 0)], part=2))

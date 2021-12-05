@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/09.in').read().split(',')))
 
@@ -52,5 +54,5 @@ def run(inp):
             base += reads_1
 
 
-print(run([1]))
-print(run([2]))
+time_print(run([1]))
+time_print(run([2]))

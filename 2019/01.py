@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 puzzle = list(map(int, open('puzzle/01.in').read().splitlines()))
 
 
@@ -12,5 +16,5 @@ def f2(x):
     return x + f2(x)
 
 
-print(sum(map(f, puzzle)))
-print(sum(map(f2, puzzle)))
+time_print(sum(map(f, puzzle)))
+time_print(sum(map(f2, puzzle)))

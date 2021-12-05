@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 puzzle = list(map(int, open('puzzle/05.in').read().split(',')))
 
 
@@ -67,5 +71,5 @@ def run(inp, part):
                 pointer += 4
 
 
-print(run(1, part=1))
-print(run(5, part=2))
+time_print(run(1, part=1))
+time_print(run(5, part=2))

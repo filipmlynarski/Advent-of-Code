@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 from math import atan2, pi
 
 puzzle = open('puzzle/10.in').read().splitlines()
@@ -23,7 +25,7 @@ def scan(cord):
 
 
 best_cord, results = max(map(scan, raw_asteroids), key=lambda x: len(x[1]))
-print(len(results))
+time_print(len(results))
 
 # get asteroids sorted by distance from laser and grouped by clockwise angles
 grouped_asteroids = [sorted_asteroids for _, sorted_asteroids in sorted(
@@ -34,7 +36,7 @@ to_vaporize = 200 - 1
 while to_vaporize != 0:
     for asteroids in filter(None, grouped_asteroids):
         if to_vaporize == 0:
-            print(asteroids[0][0] * 100 + asteroids[0][1])
+            time_print(asteroids[0][0] * 100 + asteroids[0][1])
             break
         asteroids.pop(0)
         to_vaporize -= 1

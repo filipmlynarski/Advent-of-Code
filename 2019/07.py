@@ -1,4 +1,6 @@
-from itertools import permutations
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/07.in').read().split(',')))
 
@@ -95,8 +97,8 @@ def check(combination, part=1):
             pointer_list[idx] = pointer
 
 
-perms = (map(int, perm) for perm in permutations(map(str, range(10)), 5))
-print(max(map(check, perms)))
+perms = (map(int, perm) for perm in itertools.permutations(map(str, range(10)), 5))
+time_print(max(map(check, perms)))
 
-perms = (map(int, perm) for perm in permutations(map(str, range(5, 10))))
-print(max(check(perm, part=2) for perm in perms))
+perms = (map(int, perm) for perm in itertools.permutations(map(str, range(5, 10))))
+time_print(max(check(perm, part=2) for perm in perms))

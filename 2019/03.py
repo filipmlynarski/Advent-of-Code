@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 wires = open('puzzle/03.in').read().splitlines()
 
 grid = {}
@@ -30,5 +34,5 @@ for nth_wire, wire in enumerate(wires):
                 if grid[current_cord] + steps < best_intersection_steps:
                     best_intersection_steps = grid[current_cord] + steps
 
-print(best_intersection)
-print(best_intersection_steps)
+time_print(best_intersection)
+time_print(best_intersection_steps)

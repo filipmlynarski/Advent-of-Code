@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/15.in').read().split(',')))
 
@@ -75,7 +77,7 @@ def bfs(programs, steps=0, part=1):
 moves = list(enumerate([(0, 1), (0, -1), (-1, 0), (1, 0)], 1))
 board = {(0, 0): 1}
 depth, droid = bfs([(run(move_id), cord) for move_id, cord in moves], steps=1)
-print(depth)
+time_print(depth)
 
 board.clear()  # clear board and set oxygen location to traversable location
-print(bfs([((1, *droid[0][1:]), droid[1])], part=2))
+time_print(bfs([((1, *droid[0][1:]), droid[1])], part=2))

@@ -1,6 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 import typing as t
-from collections import defaultdict
-from copy import deepcopy
 
 puzzle = list(map(int, open('puzzle/17.in').read().split(',')))
 
@@ -74,7 +75,7 @@ for val in map(chr, run()):
                 art[adj_cord].add((row, col))
                 art[(row, col)].add(adj_cord)
     col += 1
-print(sum(
+time_print(sum(
     row * col for (row, col), neighbours in art.items() if len(neighbours) > 2
 ))
 
@@ -233,4 +234,4 @@ inputs = (','.join(order) + '\n' +
 
 puzzle[0] = 2
 program = run(map(ord, inputs).__next__)
-print(list(program)[-1])
+time_print(list(program)[-1])

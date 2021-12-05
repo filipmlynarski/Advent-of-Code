@@ -1,4 +1,6 @@
-import re
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 from math import gcd
 
 moons_positions = [list(map(int, re.findall('-?\d+', line)))
@@ -49,9 +51,9 @@ def tick():
 steps = 0
 for _ in range(1000):
     tick()
-print(sum(sum(map(abs, positions)) * sum(map(abs, velocities))
-          for positions, velocities in zip(moons_positions, moons_velocities)))
+time_print(sum(sum(map(abs, positions)) * sum(map(abs, velocities))
+               for positions, velocities in zip(moons_positions, moons_velocities)))
 
 while periods_not_found:
     tick()
-print(period)
+time_print(period)

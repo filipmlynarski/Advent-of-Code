@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/23.in').read().split(',')))
 
@@ -81,7 +83,7 @@ while part_2 is None:
                     NAT_task = task[1], task[2]
                     if part_1 is None:
                         part_1 = task[2]
-                        print(part_1)
+                        time_print(part_1)
                 else:
                     network_que[task[0]].extend(task[1:])
 
@@ -93,6 +95,6 @@ while part_2 is None:
         count = 0
         if NAT_task[1] in NAT_history:
             part_2 = NAT_task[1]
-            print(part_2)
+            time_print(part_2)
         NAT_history.add(NAT_task[1])
         network_que[0].extend(NAT_task)

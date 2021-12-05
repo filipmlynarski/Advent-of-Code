@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/21.in').read().split(',')))
 
@@ -60,7 +62,7 @@ OR T J
 AND D J
 WALK
 '''
-print(list(run(map(ord, input_).__next__))[-1])
+time_print(list(run(map(ord, input_).__next__))[-1])
 
 input_ = '''\
 NOT A J
@@ -75,4 +77,4 @@ OR E T
 AND T J
 RUN
 '''
-print(list(run(map(ord, input_).__next__))[-1])
+time_print(list(run(map(ord, input_).__next__))[-1])

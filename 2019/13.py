@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/13.in').read().split(',')))
 
@@ -85,8 +87,8 @@ def play(board=None):
 
 cords = {'ball': (0, 0), 'paddle': (0, 0)}
 game_board = play()
-print(list(game_board.values()).count(2))
+time_print(list(game_board.values()).count(2))
 
 puzzle[0] = 2  # insert coin
 final_score = play(game_board)
-print(final_score)
+time_print(final_score)

@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 puzzle = list(map(int, open('puzzle/02.in').read().split(',')))
 
 
@@ -17,8 +21,8 @@ def run(noun, verb):
     return _puzzle[0]
 
 
-print(run(12, 2))
-print(next(100 * noun + verb
-           for noun in range(100)
-           for verb in range(100)
-           if run(noun, verb) == 19690720))
+time_print(run(12, 2))
+time_print(next(100 * noun + verb
+                for noun in range(100)
+                for verb in range(100)
+                if run(noun, verb) == 19690720))

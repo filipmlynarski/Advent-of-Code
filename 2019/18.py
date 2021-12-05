@@ -1,7 +1,7 @@
 import sys
-import time
+sys.dont_write_bytecode = True
+from utils import *
 import typing as t
-from functools import lru_cache
 
 puzzle: t.List[t.List[str]] = list(
     map(list, open('puzzle/18.in').read().splitlines())
@@ -92,9 +92,8 @@ def solve(func, sessions, trim=30, depth=0):
     return solve(func, sessions_, trim, depth+1)
 
 
-sys.setrecursionlimit(5000)
 starting_session = {'cords': [start_cord], 'keys': set(), 'seen': set()}
-print(solve(explore, [starting_session]))
+time_print(solve(explore, [starting_session]))
 
 horizontal_cords.cache_clear()
 for (y_cord, x_cord), _ in horizontal_cords(*start_cord):
@@ -104,4 +103,4 @@ vertical_cords = [
     for y_delta, x_delta in [(-1, -1), (-1, 1), (1, 1), (1, -1)]
 ]
 starting_session = {'cords': [vertical_cords], 'keys': set(), 'seen': set()}
-print(solve(explore_2, [starting_session]))
+time_print(solve(explore_2, [starting_session]))

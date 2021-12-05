@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/25.in').read().split(',')))
 
@@ -75,4 +77,4 @@ south
 east
 '''))
 full_output = ''.join(map(chr, run(program)))
-print(full_output.split()[-8])
+time_print(full_output.split()[-8])

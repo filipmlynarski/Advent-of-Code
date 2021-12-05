@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 start, end = list(map(int, '153517-630395'.split('-')))
 
 ans_1 = 0
@@ -28,5 +32,5 @@ for password in map(str, range(start, end)):
     ans_1 += p1_ok or p2_ok
     ans_2 += p2_ok
 
-print(ans_1)
-print(ans_2)
+time_print(ans_1)
+time_print(ans_2)

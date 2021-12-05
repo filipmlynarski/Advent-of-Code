@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 puzzle = list(map(int, open('puzzle/16.in').read()))
 
 message = puzzle.copy()
@@ -9,11 +13,11 @@ for _ in range(100):
         ) % 10
     for idx in range(len(message)-2, len(message)//2-1, -1):
         message[idx] = (message[idx] + message[idx+1]) % 10
-print(''.join(str(i) for i in message[:8]))
+time_print(''.join(str(i) for i in message[:8]))
 
 offset = int(''.join(str(i) for i in puzzle[:7]))
 message = (puzzle * 10_000)[offset:]
 for _ in range(100):
     for idx in range(len(message)-2, -1, -1):
         message[idx] = (message[idx] + message[idx+1]) % 10
-print(''.join(str(i) for i in message[:8]))
+time_print(''.join(str(i) for i in message[:8]))

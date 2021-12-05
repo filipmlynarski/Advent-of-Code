@@ -1,3 +1,7 @@
+import sys
+sys.dont_write_bytecode = True
+from utils import *
+
 from collections import defaultdict
 
 puzzle = (i.split(')') for i in open('puzzle/06.in').read().splitlines())
@@ -27,5 +31,5 @@ def find(to_check, depth=0):
     return find(_to_check, depth + 1)
 
 
-print(dig('COM'))
-print(find(full_mapping['YOU']))
+time_print(dig('COM'))
+time_print(find(full_mapping['YOU']))

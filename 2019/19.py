@@ -1,4 +1,6 @@
-from collections import defaultdict
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/19.in').read().split(',')))
 
@@ -69,7 +71,7 @@ for y in range(50):
             max_x += 1
         ans += max_x - min_x
 ratio = min_x / max_x
-print(ans)
+time_print(ans)
 
 
 def get_max_x(exact_y):
@@ -94,4 +96,4 @@ while run((get_max_x(lo_y) - edge, lo_y + edge - 1)) == 0:
 y = lo_y - edge // 10
 while run((get_max_x(y) - edge, y + edge - 1)) == 0:
     y += 1
-print((get_max_x(y) - edge) * 10_000 + y)
+time_print((get_max_x(y) - edge) * 10_000 + y)

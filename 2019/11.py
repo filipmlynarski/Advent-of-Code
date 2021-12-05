@@ -1,4 +1,6 @@
-from collections import defaultdict, deque
+import sys
+sys.dont_write_bytecode = True
+from utils import *
 
 puzzle = list(map(int, open('puzzle/11.in').read().split(',')))
 
@@ -73,10 +75,11 @@ def paint(painting=None):
             return painting
 
 
-print(len(paint()))
+time_print(len(paint()))
 result = paint({(0, 0): 1})
 xs = [x for (x, _), color in result.items() if color]
 ys = [y for (_, y), color in result.items() if color]
+time_print()
 for y in range(max(ys), min(ys)-1, -1):
     for x in range(min(xs), max(xs)+1):
         print([' ', '#'][result.get((x, y), 0)], end='')
