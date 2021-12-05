@@ -20,5 +20,5 @@ for line in puzzle.splitlines():
             grid_1[cord] += 1
             grid_2[cord] += 1
 
-time_print(sum(1 for val in grid_1.values() if val > 1))
-time_print(sum(1 for val in grid_2.values() if val > 1))
+time_print(sum(val > 1 for val in grid_1.values()))
+time_print(sum(val > 1 for val in grid_2.values()))
