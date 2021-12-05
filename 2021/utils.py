@@ -23,6 +23,8 @@ def lmap(func, *iterables):
 def flatten(l):
     return [i for x in l for i in x]
 
+def min_max(l):
+    return min(l), max(l)
 
 def ints(s: str) -> typing.List[int]:
     return lmap(int, re.findall(r"(?:(?<!\d)-)?\d+", s))  # thanks mserrano!
@@ -167,8 +169,8 @@ def lset(l, i, v):
     l[i[-1]] = v
 
 def padd(x, y):
-    if len(x) == 2: return [x[0] + y[0], x[1] + y[1]]
-    return [a+b for a, b in zip(x, y)]
+    if len(x) == 2: return type(x)([x[0] + y[0], x[1] + y[1]])
+    return type(x)([a+b for a, b in zip(x, y)])
 def pneg(v):
     if len(v) == 2: return [-v[0], -v[1]]
     return [-i for i in v]
