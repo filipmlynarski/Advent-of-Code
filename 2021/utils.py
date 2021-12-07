@@ -144,9 +144,34 @@ DELTA_TO_NESW = {
 }
 
 
+def turn_180(drowcol):
+    drow, dcol = drowcol
+    return [-drow, -dcol]
+
+
+def turn_right(drowcol):
+    # positive dcol -> positive drow
+    # positive drow -> negative dcol
+    drow, dcol = drowcol
+    return [dcol, -drow]
+
+def turn_left(drowcol):
+    drow, dcol = drowcol
+    return [-dcol, drow]
+
+
 def print_grid(grid):
     for line in grid:
         print(*line, sep="")
+
+def print_grid_dict(grid, fill='.'):
+    min_y, max_y = min_max(lmap(fst, grid))
+    min_x, max_x = min_max(lmap(snd, grid))
+    for y in range(min_y, max_y + 1):
+        for x in range(min_x, max_x + 1):
+            print(grid.get((y, x), fill), end='')
+        print()
+
 def get_neighbours(grid, row, col, deltas, fill=None):
     n, m = len(grid), len(grid[0])
     out = []
@@ -157,10 +182,12 @@ def get_neighbours(grid, row, col, deltas, fill=None):
         elif fill is not None:
             out.append(fill)
     return out
+
 def lget(l, i):
     if len(l) == 2: return l[i[0]][i[1]]
     for index in i: l = l[index]
     return l
+
 def lset(l, i, v):
     if len(l) == 2:
         l[i[0]][i[1]] = v
@@ -168,29 +195,42 @@ def lset(l, i, v):
     for index in i[:-1]: l = l[index]
     l[i[-1]] = v
 
+def fst(x):
+    return x[0]
+
+def snd(x):
+    return x[1]
+
 def padd(x, y):
     if len(x) == 2: return type(x)([x[0] + y[0], x[1] + y[1]])
     return type(x)([a+b for a, b in zip(x, y)])
+
 def pneg(v):
     if len(v) == 2: return [-v[0], -v[1]]
     return [-i for i in v]
+
 def psub(x, y):
     if len(x) == 2: return [x[0] - y[0], x[1] - y[1]]
     return [a-b for a, b in zip(x, y)]
+
 def pmul(m: int, v):
     if len(v) == 2: return [m * v[0], m * v[1]]
     return [m * i for i in v]
+
 def pdot(x, y):
     if len(x) == 2: return x[0] * y[0] + x[1] * y[1]
     return sum(a*b for a, b in zip(x, y))
+
 def pdist1(x, y=None):
     if y is not None: x = psub(x, y)
     if len(x) == 2: return abs(x[0]) + abs(x[1])
     return sum(map(abs, x))
+
 def pdist2sq(x, y=None):
     if y is not None: x = psub(x, y)
     if len(x) == 2: return (x[0] * x[0]) + (x[1] * x[1])
     return sum(i*i for i in x)
+
 def pdist2(v):
     return math.sqrt(pdist2sq(v))
 
