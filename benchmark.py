@@ -1,22 +1,22 @@
 #!/usr/bin/python
 import argparse
 import os
+import platform
 import re
 import subprocess
-import platform
+from datetime import date
 from time import time
-from timeit import default_timer
 
 __author__ = 'Filip Młynarski'
 
 parser = argparse.ArgumentParser(
     description='This scripts benchmarks Advent of Code solutions')
 parser.add_argument(
-    '-y', '--year', help='Year to benchmark (directory name)', default=2020)
+    '-y', '--year', help='Year to benchmark (directory name)', default=date.today().year)
 parser.add_argument(
     '-i', '--interpreter', help='Interpreter to use', default='python')
 parser.add_argument(
-    '-md', help='Format table in Markdown syntax', action='store_true')
+    '-md', help='Format table in Markdown syntax', action='store_true', default=True)
 args = parser.parse_args()
 
 

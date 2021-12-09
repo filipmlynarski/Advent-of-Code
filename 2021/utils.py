@@ -51,7 +51,7 @@ def make_hashable(l):
         return frozenset(map(make_hashable, l))
     return l
 
-def invert_dict(d, single=True):
+def invert_dict(d, single=True, type_=list):
     out = {}
     if single:
         for k, v in d.items():
@@ -62,7 +62,12 @@ def invert_dict(d, single=True):
     else:
         for k, v in d.items():
             v = make_hashable(v)
-            out.setdefault(v, []).append(k)
+            if type_ is list:
+                out.setdefault(v, []).append(k)
+            elif type_ is set:
+                out.setdefault(v, set()).add(k)
+            else:
+                raise ValueError('unknown type')
     return out
 
 
@@ -172,6 +177,9 @@ def print_grid_dict(grid, fill='.'):
             print(grid.get((y, x), fill), end='')
         print()
 
+def print_dict(dct: dict):
+    print(*dct.items(), sep='\n')
+
 def get_neighbours(grid, row, col, deltas, fill=None):
     n, m = len(grid), len(grid[0])
     out = []
@@ -181,6 +189,18 @@ def get_neighbours(grid, row, col, deltas, fill=None):
             out.append(grid[p_row][p_col])
         elif fill is not None:
             out.append(fill)
+    return out
+
+def get_dict_neighbours(grid, cord, deltas=None, fill=None):
+    if deltas is None:
+        deltas = GRID_DELTA
+    out = {}
+    for delta in deltas:
+        new_cord = padd(cord, delta)
+        if new_cord in grid:
+            out[new_cord] = grid[new_cord]
+        elif fill is not None:
+            out[new_cord] = fill
     return out
 
 def lget(l, i):
