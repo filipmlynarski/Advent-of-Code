@@ -1,6 +1,16 @@
 # [Advent of Code](https://adventofcode.com/) [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg?style=plastic)](https://github.com/filipmlynarski/Advent-of-Code)
 Advent of Code solutions in python
 
+2022
+===
+```bash
+python benchmark.py
+Benchmarking year 2022 [interpreter: python] [CPU: AMD64 Family 23 Model 1 Stepping 1, AuthenticAMD]
+```
+|  day   | part one | part two |total time|   place   |
+|:------:|---------:|---------:|---------:|:---------:|
+|   1    |    0.094s|    0.000s|          |  506/269  |
+
 2021
 ===
 ```bash
