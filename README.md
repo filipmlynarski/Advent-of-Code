@@ -9,7 +9,10 @@ Benchmarking year 2022 [interpreter: python] [CPU: AMD64 Family 23 Model 1 Stepp
 ```
 |  day   | part one | part two |total time|   place   |
 |:------:|---------:|---------:|---------:|:---------:|
-|   1    |    0.094s|    0.000s|          |  506/269  |
+|   1    |    0.112s|    0.000s|          |  506/269  |
+|   2    |    0.116s|    0.000s|          |  180/1k+  |
+|   3    |    0.113s|    0.000s|          |  453/451  |
+|        |          |          |    0.341s|           |
 
 2021
 ===

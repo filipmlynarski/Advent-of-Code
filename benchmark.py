@@ -9,16 +9,6 @@ from time import time
 
 __author__ = 'Filip Młynarski'
 
-parser = argparse.ArgumentParser(
-    description='This scripts benchmarks Advent of Code solutions')
-parser.add_argument(
-    '-y', '--year', help='Year to benchmark (directory name)', default=date.today().year)
-parser.add_argument(
-    '-i', '--interpreter', help='Interpreter to use', default='python')
-parser.add_argument(
-    '-md', help='Format table in Markdown syntax', action='store_true', default=True)
-args = parser.parse_args()
-
 
 def format_row(row_):
     formatted = []
@@ -31,66 +21,80 @@ def format_row(row_):
     return f'|{"|".join(formatted)}|'
 
 
-print(f'Benchmarking year {args.year} '
-      f'[interpreter: {args.interpreter}] '
-      f'[CPU: {platform.processor()}]')
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description='This scripts benchmarks Advent of Code solutions')
+    parser.add_argument(
+        '-y', '--year', help='Year to benchmark (directory name)', default=date.today().year)
+    parser.add_argument(
+        '-i', '--interpreter', help='Interpreter to use', default='python')
+    parser.add_argument(
+        '-md', help='Format table in Markdown syntax', action='store_true', default=True)
+    args = parser.parse_args()
 
-match = re.compile('\d{2}.py').match
-os.chdir(str(args.year))
-files = filter(match, os.listdir('.'))
+    print(f'Benchmarking year {args.year} '
+          f'[interpreter: {args.interpreter}] '
+          f'[CPU: {platform.processor()}]')
 
-formatting = {
-    'day': {'width': 8},
-    'part one': {'width': 10, 'round': 3},
-    'part two': {'width': 10, 'round': 3},
-    'total time': {'width': 10, 'round': 3},
-}
-stats = dict()
-if os.path.isfile('stats.txt'):
-    formatting.update({'place': {'width': 11}})
-    stats = {
-        day: f'{part_1}/{part_2}'
-        for day, part_1, part_2 in map(str.split, open('stats.txt').readlines())
+    match = re.compile('\d{2}.py').match
+    os.chdir(str(args.year))
+    files = filter(match, os.listdir('.'))
+
+    formatting = {
+        'day': {'width': 8},
+        'part one': {'width': 10, 'round': 3},
+        'part two': {'width': 10, 'round': 3},
+        'total time': {'width': 10, 'round': 3},
     }
+    stats = dict()
+    if os.path.isfile('stats.txt'):
+        formatting.update({'place': {'width': 11}})
+        stats = {
+            day: f'{part_1}/{part_2}'
+            for day, part_1, part_2 in map(str.split, open('stats.txt').readlines())
+        }
 
-separators = ('-' * col_format['width'] for col_format in formatting.values())
-row_sep = f'+{"+".join(separators)}+'
-if not args.md:
-    print(row_sep)
-print(format_row(formatting.keys()))
-
-if args.md:
-    md_separators = []
-    for col_format in formatting.values():
-        if 'round' in col_format:
-            md_separators.append(f'{"-" * (col_format["width"] - 1)}:')
-        else:
-            md_separators.append(f':{"-" * (col_format["width"] - 2)}:')
-    print(f'|{"|".join(md_separators)}|')
-else:
-    print(row_sep.replace('-', '='))
-
-total_time = 0
-interpreter = args.interpreter
-for file_name in sorted(files):
-    day, _ = file_name.split('.', 1)
-    start = time()
-
-    process = subprocess.Popen([interpreter, file_name], stdout=subprocess.PIPE)
-    time_1, *_ = process.stdout.readline().split()
-    part_1_time = float(time_1) - start
-    total_time += part_1_time
-    part_2_time = ''
-    if day != '25':
-        time_2, *_ = process.stdout.readline().split()
-        part_2_time = float(time_2) - start - part_1_time
-        total_time += part_2_time
-
-    row = [day.lstrip('0'), part_1_time, part_2_time, '', stats.get(day, '')]
-    print(format_row(row))
+    separators = ('-' * col_format['width'] for col_format in formatting.values())
+    row_sep = f'+{"+".join(separators)}+'
     if not args.md:
         print(row_sep)
+    print(format_row(formatting.keys()))
 
-print(format_row(['', '', '', total_time, '']))
-if not args.md:
-    print(row_sep)
+    if args.md:
+        md_separators = []
+        for col_format in formatting.values():
+            if 'round' in col_format:
+                md_separators.append(f'{"-" * (col_format["width"] - 1)}:')
+            else:
+                md_separators.append(f':{"-" * (col_format["width"] - 2)}:')
+        print(f'|{"|".join(md_separators)}|')
+    else:
+        print(row_sep.replace('-', '='))
+
+    total_time = 0
+    interpreter = args.interpreter
+    for file_name in sorted(files):
+        day, _ = file_name.split('.', 1)
+        start = time()
+
+        process = subprocess.Popen([interpreter, file_name], stdout=subprocess.PIPE)
+        try:
+            time_1, *_ = process.stdout.readline().split()
+        except ValueError:
+            continue
+        part_1_time = float(time_1) - start
+        total_time += part_1_time
+        part_2_time = ''
+        if day != '25':
+            time_2, *_ = process.stdout.readline().split()
+            part_2_time = float(time_2) - start - part_1_time
+            total_time += part_2_time
+
+        row = [day.lstrip('0'), part_1_time, part_2_time, '', stats.get(day, '')]
+        print(format_row(row))
+        if not args.md:
+            print(row_sep)
+
+    print(format_row(['', '', '', total_time, '']))
+    if not args.md:
+        print(row_sep)

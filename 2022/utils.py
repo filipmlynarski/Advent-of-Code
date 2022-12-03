@@ -8,6 +8,7 @@ import operator
 import re
 import sys
 import typing
+from more_itertools import chunked
 from collections import Counter, defaultdict, deque
 from copy import deepcopy
 from functools import reduce
@@ -294,7 +295,7 @@ def decor(f):
 
 def print_and_copy(*args, **kwargs):
     if args:
-        pyperclip.copy(args[0])
+        pyperclip.copy(str(args[0]))
     orig_print(*args, **kwargs)
 
 
