@@ -244,10 +244,6 @@ def snd(x):
     return x[1]
 
 
-def trd(x):
-    return x[2]
-
-
 def padd(x, y):
     if len(x) == 2: return type(x)([x[0] + y[0], x[1] + y[1]])
     return type(x)([a + b for a, b in zip(x, y)])
@@ -291,6 +287,7 @@ def pdist2(v):
 
 def decor(f):
     import time
+
     def inner(*args, **kwargs):
         return f(time.time(), *args, **kwargs)
 
