@@ -1,6 +1,21 @@
 # [Advent of Code](https://adventofcode.com/) [![PyPI](https://img.shields.io/pypi/pyversions/Django.svg?style=plastic)](https://github.com/filipmlynarski/Advent-of-Code)
 Advent of Code solutions in python
 
+2024
+===
+```bash
+export PYTHONPATH=$PYTHONPATH:~/projects/Advent-of-Code
+python benchmark.py
+Benchmarking year 2024 [interpreter: python] [CPU: x86_64]
+```
+|  day   | part one | part two |total time|   place   |
+|:------:|---------:|---------:|---------:|:---------:|
+|   1    |    0.037s|    0.000s|          |  934/607  |
+|   2    |    0.035s|    0.000s|          |  1k+/1k+  |
+|   3    |    0.031s|    0.000s|          |  1k+/1k+  |
+|        |          |          |    0.103s|           |
+
+
 2022
 ===
 ```bash
@@ -21,8 +36,6 @@ Benchmarking year 2022 [interpreter: python] [CPU: AMD64 Family 23 Model 1 Stepp
 |   10   |    0.111s|    0.000s|          |  1k+/1k+  |
 |   11   |    0.117s|    4.650s|          |  1k+/1k+  |
 |        |          |          |    6.353s|           |
-
-Process finished with exit code 0
 
 
 2021

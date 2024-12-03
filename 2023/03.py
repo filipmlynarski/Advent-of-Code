@@ -6,35 +6,38 @@ current_day = __file__.split('/')[-1].split('.')[0]
 puzzle = open(f'puzzle/{current_day}.in').read()
 
 lines = puzzle.splitlines()
-ints = get_ints(puzzle)
-words = get_words(puzzle)
 
-ans = 0
+cords_of_all_numbers = set()
+part_2 = 0
 for y, line in enumerate(lines):
-    x = 0
-    while x < len(line):
-        val = line[x]
-        if val.isdecimal():
-            total = val
-            for idx in range(x+1, len(line)):
-                if line[idx].isdecimal():
-                    total += line[idx]
-                else:
-                    break
-            good = False
-            print('trying', total)
-            for delta in range(len(total)+1):
-                new_y, new_x = y, x + delta
-                print(lines[new_y][x])
-                print(f'{lines[new_y][new_x] = }')
-                for neigh in get_neighbours(lines, new_y, new_x, GRID_DELTA):
-                    print('neigh = ', neigh)
-                    if not neigh.isdecimal() and neigh != '.':
-                        good = True
-            if good:
-                print(total)
-                ans += int(total)
-            x = idx
-        x += 1
+    for x, char in enumerate(line):
+        if not char.isdecimal() and char != '.':
+            new_numbers_cords = set()
+            for cord, val in get_neighbours_with_cords(lines, y, x, OCT_DELTA).items():
+                if val.isdecimal():
+                    number_cords = {cord}
+                    candidates = [cord]
+                    while candidates:
+                        candidate = candidates.pop()
+                        left_right = get_neighbours_with_cords(lines, *candidate, [(0, -1), (0, 1)])
+                        for sub_cord, sub_val in left_right.items():
+                            if sub_cord in number_cords:
+                                continue
+                            if sub_val.isdecimal():
+                                number_cords.add(sub_cord)
+                                candidates.append(sub_cord)
+                    new_numbers_cords.add(frozenset(number_cords))
+            cords_of_all_numbers = cords_of_all_numbers.union(new_numbers_cords)
 
-print(ans)
+            if char == '*' and len(new_numbers_cords) == 2:
+                temp = 1
+                for cords in new_numbers_cords:
+                    temp *= int("".join(lines[cord[0]][cord[1]] for cord in sorted(cords)))
+                part_2 += temp
+
+
+part_1 = 0
+for cords in cords_of_all_numbers:
+    part_1 += int("".join(lines[cord[0]][cord[1]] for cord in sorted(cords)))
+time_print(part_1)
+time_print(part_2)

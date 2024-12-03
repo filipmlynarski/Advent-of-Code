@@ -16,6 +16,8 @@ def format_row(row_):
         if isinstance(cell, float):
             cell = f'{round(cell, fmt["round"]):0<{fmt["round"]+2}}s'
             formatted.append(f'{cell:>{fmt["width"]}}')
+        elif isinstance(cell, int):
+            formatted.append(str(cell).center(fmt['width']))
         else:
             formatted.append(cell.center(fmt['width']))
     return f'|{"|".join(formatted)}|'
@@ -36,7 +38,7 @@ if __name__ == '__main__':
           f'[interpreter: {args.interpreter}] '
           f'[CPU: {platform.processor()}]')
 
-    match = re.compile('\d{2}.py').match
+    match = re.compile(r'\d{2}.py').match
     os.chdir(str(args.year))
     files = filter(match, os.listdir('.'))
 

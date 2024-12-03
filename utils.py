@@ -136,8 +136,8 @@ def binary_search(f, lo=0, hi=None):
     return best_so_far
 
 
-GRID_DELTA = [[-1, 0], [1, 0], [0, -1], [0, 1]]
-OCT_DELTA = [[1, 1], [-1, -1], [1, -1], [-1, 1]] + GRID_DELTA
+GRID_DELTA = ([-1, 0], [1, 0], [0, -1], [0, 1])
+OCT_DELTA = ([1, 1], [-1, -1], [1, -1], [-1, 1]) + GRID_DELTA
 CHAR_TO_DELTA = {
     "U": [-1, 0],
     "R": [0, 1],
@@ -197,7 +197,7 @@ def print_dict(dct: dict):
     print(*dct.items(), sep='\n')
 
 
-def get_neighbours(grid, row, col, deltas, fill=None):
+def get_neighbours(grid, row, col, deltas=GRID_DELTA, fill=None) -> list:
     n, m = len(grid), len(grid[0])
     out = []
     for i, j in deltas:
@@ -206,6 +206,18 @@ def get_neighbours(grid, row, col, deltas, fill=None):
             out.append(grid[p_row][p_col])
         elif fill is not None:
             out.append(fill)
+    return out
+
+
+def get_neighbours_with_cords(grid, row, col, deltas=GRID_DELTA, fill=None) -> dict:
+    n, m = len(grid), len(grid[0])
+    out = {}
+    for i, j in deltas:
+        p_row, p_col = row + i, col + j
+        if 0 <= p_row < n and 0 <= p_col < m:
+            out[(p_row, p_col)] = grid[p_row][p_col]
+        elif fill is not None:
+            out[(p_row, p_col)] = fill
     return out
 
 
